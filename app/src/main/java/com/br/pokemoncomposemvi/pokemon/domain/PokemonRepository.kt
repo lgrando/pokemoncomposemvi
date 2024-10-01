@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
 
-    suspend fun getAllPokemons(): Flow<Resource<out List<Pokemon>>>
+    suspend fun getAllPokemons(forceRefresh: Boolean = false): Flow<Resource<out List<Pokemon>>>
 }

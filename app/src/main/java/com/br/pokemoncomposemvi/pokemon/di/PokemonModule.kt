@@ -1,6 +1,7 @@
 package com.br.pokemoncomposemvi.pokemon.di
 
 import com.br.pokemoncomposemvi.pokemon.data.PokemonDataSource
+import com.br.pokemoncomposemvi.pokemon.data.PokemonLocalDataSource
 import com.br.pokemoncomposemvi.pokemon.data.PokemonRemoteDataSource
 import com.br.pokemoncomposemvi.pokemon.data.PokemonRepositoryImpl
 import com.br.pokemoncomposemvi.pokemon.domain.PokemonRepository
@@ -18,4 +19,7 @@ abstract class PokemonModule {
 
     @Binds
     abstract fun bindPokemonRemoteDataSource(pokemonRemoteDataSource: PokemonRemoteDataSource): PokemonDataSource.Remote
+
+    @Binds
+    abstract fun bindPokemonLocalDataSource(pokemonRemoteDataSource: PokemonLocalDataSource): PokemonDataSource.Local
 }

@@ -29,12 +29,11 @@ class PokemonListViewModel @Inject constructor(
     val state: StateFlow<PokemonListState> = _state.asStateFlow()
 
     init {
-        Log.d("=-=-=-=-=", "init view model")
         handleIntents()
         sendIntent(PokemonListIntent.GetPokemons)
     }
 
-    fun sendIntent(intent: PokemonListIntent) {
+    private fun sendIntent(intent: PokemonListIntent) {
         viewModelScope.launch { intentChannel.send(intent) }
     }
 
@@ -48,7 +47,7 @@ class PokemonListViewModel @Inject constructor(
 
     private fun getAllPokemons() {
         viewModelScope.launch {
-            getAllPokemonsUseCase().collect { resource ->
+            getAllPokemonsUseCase(forceRefresh = true).collect { resource ->
                 when (resource) {
                     is Resource.Error -> _state.update { it.copy(error = resource.error) }
                     is Resource.Loading -> _state.update { it.copy(isLoading = resource.isLoading) }

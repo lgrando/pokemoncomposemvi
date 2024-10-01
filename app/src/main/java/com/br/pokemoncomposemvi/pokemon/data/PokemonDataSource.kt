@@ -11,6 +11,6 @@ interface PokemonDataSource {
     }
 
     interface Local {
-        fun getFavoritePokemons()
+        suspend fun getAllPokemon(): Flow<Resource<out List<Pokemon>>>
     }
 }
